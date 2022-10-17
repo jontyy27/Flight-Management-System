@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Booking {
@@ -18,6 +19,7 @@ public class Booking {
 	@OneToMany
 	private List<Passenger> passenger;
 	private double ticketCost;
+	@OneToOne
 	private Flight flight;
 	private Integer noOfPassengers;
 	public BigInteger getBookingid() {

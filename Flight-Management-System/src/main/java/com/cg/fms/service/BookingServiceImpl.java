@@ -13,8 +13,8 @@ import com.cg.fms.repository.BookingDao;
 @Component
 public class BookingServiceImpl implements BookingService{
 	
-	//@Autowired
-	//private BookingDao bookingDao;
+	@Autowired
+	private BookingDao bookingDao;
 
 	@Override
 	public ResponseEntity<Booking> addBooking(Booking newBooking) {
