@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "fms")
+@Table(name = "Users")
 public class User {
 	
   private String userType;
