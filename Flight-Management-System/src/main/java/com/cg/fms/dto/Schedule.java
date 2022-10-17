@@ -26,6 +26,7 @@ public class Schedule {
       public Schedule() {
     	  
       }
+      //para Constructor
       public Schedule(BigInteger scheduleId,Airport srcAirPort, Airport dstnAirport, String deptDateTime, String arrDateTime) {
     	  super();
     	  this.scheduleId=scheduleId;
