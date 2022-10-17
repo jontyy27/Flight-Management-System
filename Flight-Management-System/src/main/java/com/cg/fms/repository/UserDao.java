@@ -1,5 +1,11 @@
 package com.cg.fms.repository;
 
-public interface UserDao {
+import java.math.BigInteger;
 
+import org.springframework.data.repository.CrudRepository;
+
+import com.cg.fms.dto.User;
+
+public interface UserDao extends CrudRepository<User, BigInteger>{
+	
 }

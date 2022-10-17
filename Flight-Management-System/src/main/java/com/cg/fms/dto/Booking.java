@@ -16,30 +16,32 @@ import javax.persistence.OneToOne;
 @Entity
 public class Booking {
 	@Id
-	private BigInteger bookingid;
+	private BigInteger bookingId;
 	
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
 	@JoinColumn(name = "USER_ID")
-	
 	private User userId;
+	
 	private LocalDate bookingDate;
 	
 	@OneToOne(cascade = CascadeType.ALL, targetEntity = Passenger.class)
 	@JoinColumn(name = "passenger")
 	private List<Passenger> passenger;
+	
 	private double ticketCost;
 	
 	@OneToOne
 	@JoinColumn(name = "flight")
 	private Flight flight;
+	
 	private Integer noOfPassengers;
 	
 	
-	public BigInteger getBookingid() {
-		return bookingid;
+	public BigInteger getBookingId() {
+		return bookingId;
 	}
-	public void setBookingid(BigInteger bookingid) {
-		this.bookingid = bookingid;
+	public void setBookingid(BigInteger bookingId) {
+		this.bookingId = bookingId;
 	}
 	public User getUserId() {
 		return userId;
