@@ -1,0 +1,48 @@
+package com.cg.fms.dto;
+
+import java.math.BigInteger;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Passenger {
+	@Id
+	private BigInteger pnrNumber;
+	private String pasengerName;
+	private Integer passengerAge;
+	private BigInteger passengerUIN;
+	private Double luggage;
+	public BigInteger getPnrNumber() {
+		return pnrNumber;
+	}
+	public void setPnrNumber(BigInteger pnrNumber) {
+		this.pnrNumber = pnrNumber;
+	}
+	public String getPasengerName() {
+		return pasengerName;
+	}
+	public void setPasengerName(String pasengerName) {
+		this.pasengerName = pasengerName;
+	}
+	public Integer getPassengerAge() {
+		return passengerAge;
+	}
+	public void setPassengerAge(Integer passengerAge) {
+		this.passengerAge = passengerAge;
+	}
+	public BigInteger getPassengerUIN() {
+		return passengerUIN;
+	}
+	public void setPassengerUIN(BigInteger passengerUIN) {
+		this.passengerUIN = passengerUIN;
+	}
+	public Double getLuggage() {
+		return luggage;
+	}
+	public void setLuggage(Double luggage) {
+		this.luggage = luggage;
+	}
+	
+
+}
