@@ -10,7 +10,7 @@ public interface BookingService {
 	
 	public ResponseEntity<Booking> addBooking(Booking newBooking);
 	
-	public Booking updateBooking(Booking newBooking);
+	public Booking updateBooking(Booking changedBooking);
 	
 	public Iterable<Booking> displayAllBooking();
 	
