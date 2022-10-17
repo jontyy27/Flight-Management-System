@@ -1,10 +1,15 @@
 package com.cg.fms.dto;
 
 import java.math.BigInteger;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "fms")
 public class User {
 	
   private String userType;
@@ -14,7 +19,7 @@ public class User {
   private String userPassword;
   private BigInteger userPhone;
   private String email;
-  
+ 
   public User() {
 	  
   }
@@ -27,6 +32,10 @@ public class User {
     this.email=email;
   }
   
+  
+  public BigInteger getUserId() {
+	return userId;
+  }
   public String getUserType(){
     return userType;
   }

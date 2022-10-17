@@ -24,7 +24,7 @@ public class ScheduledFlight {
 	public ScheduledFlight() {
 		
 	}
-	public ScheduledFlight(BigInteger scheduleFlightId,Flight fligt, Integer availableSeats, Schedule schedule) {
+	public ScheduledFlight(BigInteger scheduleFlightId,Flight flight, Integer availableSeats, Schedule schedule) {
 		super();
 		this.scheduleFlightId=scheduleFlightId;
 		this.flight=flight;

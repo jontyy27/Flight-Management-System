@@ -5,8 +5,11 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -14,14 +17,24 @@ import javax.persistence.OneToOne;
 public class Booking {
 	@Id
 	private BigInteger bookingid;
+	
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+	@JoinColumn(name = "USER_ID")
+	
 	private User userId;
 	private LocalDate bookingDate;
-	@OneToMany
+	
+	@OneToOne(cascade = CascadeType.ALL, targetEntity = Passenger.class)
+	@JoinColumn(name = "passenger")
 	private List<Passenger> passenger;
 	private double ticketCost;
+	
 	@OneToOne
+	@JoinColumn(name = "flight")
 	private Flight flight;
 	private Integer noOfPassengers;
+	
+	
 	public BigInteger getBookingid() {
 		return bookingid;
 	}
@@ -64,6 +77,7 @@ public class Booking {
 	public void setNoOfPassengers(Integer noOfPassengers) {
 		this.noOfPassengers = noOfPassengers;
 	}
+	
 	
 
 }
