@@ -39,7 +39,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public Booking updateBooking(Booking changedBooking) {
 		Optional<Booking> findBookingById = bookingDao.findById(changedBooking.getBookingId());
-		if(!findBookingById.isPresent()) {
+		if(findBookingById.isPresent()) {
 			bookingDao.save(changedBooking);
 		} else
 			throw new RecordNotFoundException("Booking with Booking ID: "+ changedBooking.getBookingId() +" not exists!!");
@@ -57,7 +57,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public String deleteBooking(BigInteger bookingId) {
 		Optional<Booking> findBookingById = bookingDao.findById(bookingId);
-		if(!findBookingById.isPresent()) {
+		if(findBookingById.isPresent()) {
 			bookingDao.deleteById(bookingId);
 			return "Booking Deleted!!";
 		} else
