@@ -30,6 +30,7 @@ public class UserController {
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public void addUser(@RequestBody User newUser) {
 		userService.createUser(newUser);
+		
 	}
 	
 	@GetMapping("/displayAllUser")

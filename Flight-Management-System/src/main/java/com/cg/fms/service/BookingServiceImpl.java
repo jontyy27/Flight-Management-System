@@ -48,7 +48,9 @@ public class BookingServiceImpl implements BookingService{
 		
 		return changedBooking;
 	}
-
+	
+	// Displaying all booking
+	
 	@Override
 	public Iterable<Booking> displayAllBooking() {
 		
