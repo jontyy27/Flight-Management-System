@@ -1,5 +1,4 @@
-package com.cg.fms.dto;
-
+package com.cg.fms.secure.model;
 import java.math.BigInteger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,26 +10,28 @@ public class User {
 	
   private String userType;
   @Id
-  private BigInteger userId;
-  private String userName;
-  private String userPassword;
+  private int userId;
+  private String username;
+  private String password;
   private BigInteger userPhone;
   private String email;
- 
+  private String role;
+  
   public User() {
 	  
   }
-  public User(String userType, BigInteger userId, String userName, String userPassword, BigInteger userPhone, String email){
+  public User(String userType, int userId, String username, String password, BigInteger userPhone, String email, String role){
     this.userType=userType;
     this.userId=userId;
-    this.userName=userName;
-    this.userPassword=userPassword;
+    this.username=username;
+    this.password=password;
     this.userPhone=userPhone;
     this.email=email;
-  }
+    this.role=role;
+    }
   
   
-  public BigInteger getUserId() {
+  public int getUserId() {
 	return userId;
   }
   public String getUserType(){
@@ -39,23 +40,22 @@ public class User {
   public void setUserType(String userType){
     this.userType=userType;
   }
-  public BigInteger getUserID(){
-    return userId;
-  }
-  public void setUserId(BigInteger userId){
+ 
+  public void setUserId(int userId){
      this.userId=userId;
   }
-  public String getUserName(){
-    return userName;
+  
+  public String getUsername() {
+	return username;
   }
-  public void setUserName(String userName){
-    this.userName=userName;
+  public void setUsername(String username) {
+	this.username = username;
   }
-  public String getUserPassword(){
-    return userPassword;
+  public String getPassword() {
+	return password;
   }
-  public void setUserPassword(String userPassword){
-    this.userPassword=userPassword;
+  public void setPassword(String password) {
+	this.password = password;
   }
   public BigInteger getUserPhone(){
     return userPhone;
@@ -69,5 +69,12 @@ public class User {
   public void setEmail(String email){
     this.email=email;
   }
-
+  public String getRole() {
+	return role;
+  }
+  public void setRole(String role) {
+	this.role = role;
+  }
+  
 }
+

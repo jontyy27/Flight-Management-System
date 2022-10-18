@@ -7,9 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigInteger;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.fms.dto.Flight;
 import com.cg.fms.repository.FlightDao;
-import com.cg.fms.repository.UserDao;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,13 +1,11 @@
 package com.cg.fms.repository;
 
-import java.math.BigInteger;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cg.fms.dto.User;
+import com.cg.fms.secure.model.User;
 
-@Repository
-public interface UserDao extends CrudRepository<User, BigInteger>{
+@Repository(value = "userDao")
+public interface UserDao extends CrudRepository<User, Integer>{
 	
 }

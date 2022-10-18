@@ -3,6 +3,7 @@ package com.cg.fms.controller;
 import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.fms.dto.User;
+import com.cg.fms.secure.model.User;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.service.UserService;
@@ -28,8 +29,9 @@ public class UserController {
 	
 	@PostMapping("/createUser")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public void addUser(@RequestBody User newUser) {
+	public ResponseEntity<User> addUser(@RequestBody User newUser) {
 		userService.createUser(newUser);
+		return new ResponseEntity<User>(newUser, HttpStatus.OK);
 		
 	}
 	
@@ -46,13 +48,13 @@ public class UserController {
 	
 	@GetMapping("/searchUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<?> searchUserByID(@PathVariable("id") BigInteger userId){
+	public ResponseEntity<?> searchUserByID(@PathVariable("id") int userId){
 		return userService.viewUserById(userId);
 	}
 	
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void deleteBookingByID(@PathVariable("id") BigInteger userId) {
+	public void deleteBookingByID(@PathVariable("id") int userId) {
 		userService.deleteUser(userId);
 	}
 

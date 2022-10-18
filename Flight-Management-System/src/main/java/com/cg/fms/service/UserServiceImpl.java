@@ -1,36 +1,37 @@
 package com.cg.fms.service;
 
-import java.math.BigInteger;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.cg.fms.dto.User;
-import com.cg.fms.exception.RecordAlreadyPresentException;
+import com.cg.fms.secure.model.User;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.UserDao;
 
 @Component
+@Service(value="userService")
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDao userDao;
 	
 	@Override
-	public ResponseEntity<User> createUser(User newUser) {
-		Optional<User> findUserById = userDao.findById(newUser.getUserId());
-		try {
-			if(!findUserById.isPresent()) {
+	public User createUser(User newUser) {
+		//Optional<User> findUserById = userDao.findById(newUser.getUserId());
+		//try {
+			//if(!findUserById.isPresent()) {
 				userDao.save(newUser);
-				return new ResponseEntity<User>(newUser, HttpStatus.OK);
-			} else
-				throw new RecordAlreadyPresentException("User with Id: "+ newUser.getUserId() +" already exists!!");
-		} catch (RecordAlreadyPresentException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+				//return new ResponseEntity<User>(newUser, HttpStatus.OK);
+			//} else
+				//throw new RecordAlreadyPresentException("User with Id: "+ newUser.getUserId() +" already exists!!");
+		//} catch (RecordAlreadyPresentException e) {
+			//return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		//}
+		return newUser;
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String deleteUser(BigInteger userId) {
+	public String deleteUser(int userId) {
 		Optional<User> findUserById = userDao.findById(userId);
 		
 		if(findUserById.isPresent()) {
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService{
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public ResponseEntity<?> viewUserById(BigInteger userId) {
+	public ResponseEntity<?> viewUserById(int userId) {
 		Optional<User> findById = userDao.findById(userId);
 		try {
 			if(findById.isPresent()) {
