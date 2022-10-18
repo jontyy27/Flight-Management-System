@@ -1,11 +1,6 @@
 package com.cg.fms.controller;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.cg.fms.dto.Airport;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
-import com.cg.fms.dto.Airport;
-import com.cg.fms.dto.Flight;
 import com.cg.fms.service.AirportService;
-import com.cg.fms.service.AirportServiceImpl;
-@CrossOrigin("http://localhost:4200")
+
 @RestController
 @RequestMapping("/airport")
 public class AirportController {

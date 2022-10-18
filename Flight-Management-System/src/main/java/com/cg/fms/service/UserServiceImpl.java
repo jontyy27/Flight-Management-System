@@ -58,10 +58,10 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Iterable<User> displayAllUser() {
-		// TODO Auto-generated method stub
 		return userDao.findAll();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ResponseEntity<?> viewUserById(BigInteger userId) {
 		Optional<User> findById = userDao.findById(userId);

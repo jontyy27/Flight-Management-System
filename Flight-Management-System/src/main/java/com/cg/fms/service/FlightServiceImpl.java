@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cg.fms.repository.FlightDao;
 //import com.cg.fms.exception.RecordAlreadyPresentException;
@@ -19,9 +18,9 @@ public class FlightServiceImpl implements FlightService {
 	@Autowired
 	FlightDao flightDao;
 
-	/*
-	 * add a flight
-	 */
+	
+	 // Adding a flight
+	 
 	@Override
 	public ResponseEntity<Flight> addFlight(Flight flight) {
 		Optional<Flight> findById = flightDao.findById(flight.getFlightNo());

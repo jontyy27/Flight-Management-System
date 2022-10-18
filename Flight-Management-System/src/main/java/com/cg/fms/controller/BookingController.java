@@ -37,9 +37,7 @@ public class BookingController {
 		return bookingService.displayAllBooking();
 	}
 
-<<<<<<< HEAD
-}
-=======
+
 	@PutMapping("/updateBooking")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public void modifyBooking(@RequestBody Booking updateBooking) {
@@ -58,4 +56,4 @@ public class BookingController {
 		bookingService.deleteBooking(bookingId);
 	}
 }
->>>>>>> 9a8fe8bd3155722b114f000994f993ec195fee13
+

@@ -1,38 +1,32 @@
 package com.cg.fms.service;
-import com.cg.fms.service.AirportService;
-import java.math.BigInteger;
 import java.util.Optional;
-
-import com.cg.fms.dto.Airport;
-import com.cg.fms.dto.Flight;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cg.fms.repository.AirportDao;
+import com.cg.fms.dto.Airport;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
+import com.cg.fms.repository.AirportDao;
 
 @Service
 public class AirportServiceImpl implements AirportService {
 	@Autowired
 	AirportDao airportDao;
 
-	/*
-	 * view all Airports
-	 */
+	
+	 // view all Airports
+	 
 	@Override
 	public Iterable<Airport> viewAllAirport() {
 		return airportDao.findAll();
 	}
 
-	/*
-	 * view airport by airportCode
-	 */
+	
+	 // view airport by airportCode
+	 
 	@Override
 	public Airport viewAirport(String airportCode) {
 		Optional<Airport> findById = airportDao.findById(airportCode);
@@ -50,9 +44,9 @@ public class AirportServiceImpl implements AirportService {
 		}
         }*/
 
-	/*
-	 * add a airport
-	 */
+	
+	 // adding a airport
+	 
 	@Override
 	public ResponseEntity<?> addAirport(Airport airport) {
 		Optional<Airport> findById = airportDao.findById(airport.getAirportCode());
@@ -71,9 +65,9 @@ public class AirportServiceImpl implements AirportService {
 		}
 	}
 
-	/*
-	 * modify an Airport
-	 */
+	
+	 // modifying an Airport
+	 
 	@Override
 	public Airport modifyAirport(Airport airport) {
 		Optional<Airport> findById = airportDao.findById(airport.getAirportCode());
@@ -85,9 +79,9 @@ public class AirportServiceImpl implements AirportService {
 		return airport;
 	}
 
-	/*
-	 * remove an airport
-	 */
+	
+	 // removing an airport
+	 
 	@Override
 	public String removeAirport(String airportCode) {
 		Optional<Airport> findById = airportDao.findById(airportCode);

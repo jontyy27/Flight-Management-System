@@ -1,9 +1,4 @@
 package com.cg.fms.service;
-
-<<<<<<< HEAD
-
-public class BookingServiceImpl{
-=======
 import java.math.BigInteger;
 import java.util.Optional;
 
@@ -15,6 +10,8 @@ import com.cg.fms.dto.Booking;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.BookingDao;
+
+
 
 @Component
 public class BookingServiceImpl implements BookingService{
@@ -40,6 +37,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	// Updating Booking made
+	
 	@Override
 	public Booking updateBooking(Booking changedBooking) {
 		Optional<Booking> findBookingById = bookingDao.findById(changedBooking.getBookingId());
@@ -58,6 +56,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	// Deleting the booking
+	
 	@Override
 	public String deleteBooking(BigInteger bookingId) {
 		Optional<Booking> findBookingById = bookingDao.findById(bookingId);
@@ -69,6 +68,8 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	// Find booking by ID
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ResponseEntity<?> viewBookingById(BigInteger bookingId) {
 		Optional<Booking> findById = bookingDao.findById(bookingId);
@@ -82,6 +83,6 @@ public class BookingServiceImpl implements BookingService{
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
->>>>>>> 9a8fe8bd3155722b114f000994f993ec195fee13
+
 
 }
