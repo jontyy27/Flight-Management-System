@@ -27,6 +27,7 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	
+	// Add Booking
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {
@@ -34,12 +35,13 @@ public class BookingController {
 		return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
 	}
 	
+	//Display all bookings
 	@GetMapping("/displayAllBooking")
 	public Iterable<Booking> readAllBookings(){
 		return bookingService.displayAllBooking();
 	}
 
-
+	// Update booking
 	@PutMapping("/updateBooking")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<Booking> modifyBooking(@RequestBody Booking updateBooking) {
@@ -47,12 +49,14 @@ public class BookingController {
 		return new ResponseEntity<Booking>(updateBooking, HttpStatus.OK);
 	}
 	
+	// Search booking by ID
 	@GetMapping("/searchBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<?> searchBookingByID(@PathVariable("id") BigInteger bookingId){
 		return bookingService.viewBookingById(bookingId);
 	}
 	
+	// Delete booking by ID
 	@DeleteMapping("/deleteBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String deleteBookingByID(@PathVariable("id") BigInteger bookingId) {

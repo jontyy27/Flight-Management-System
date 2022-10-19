@@ -23,17 +23,20 @@ public class AirportController {
 	@Autowired(required = true)
 	AirportService airportService;
 
+	// View airport by ID
 	@GetMapping("/viewAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public Airport viewAirport(@PathVariable("id") String airportCode) {
 		return airportService.viewAirport(airportCode);
 	}
 
+	//View all airport
 	@GetMapping("/allAirport")
 	public Iterable<Airport> viewAllAirport() {
 		return airportService.viewAllAirport();
 	}
 
+	// Add new airport
 	@PostMapping("/addAirport")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Airport> addAirport(@RequestBody Airport airport) {
@@ -41,6 +44,7 @@ public class AirportController {
 		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 
+	// Update airport
 	@PutMapping("/updateAirport")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<Airport> modifyAirport(@RequestBody Airport airport) {
@@ -48,6 +52,7 @@ public class AirportController {
 		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 
+	// Delete airport by ID
 	@DeleteMapping("/deleteAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String removeAirport(@PathVariable("id") String airportCode) {

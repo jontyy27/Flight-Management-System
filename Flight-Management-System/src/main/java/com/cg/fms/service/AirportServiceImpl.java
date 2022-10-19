@@ -30,18 +30,11 @@ public class AirportServiceImpl implements AirportService {
 		Optional<Airport> findById = airportDao.findById(airportCode);
 		if (findById.isPresent()) {
 			return findById.get();
-		}
-			
-			//return new ResponseEntity<Airport>(airport, HttpStatus.OK)}
+		}	
 		else
 			throw new RecordNotFoundException("Airport with airport code: " + airportCode + "not exists");
 	    }
-		/*catch(RecordNotFoundException e)
-		{
-			return new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-        }*/
-
+		
 	
 	 // adding a airport
 	 

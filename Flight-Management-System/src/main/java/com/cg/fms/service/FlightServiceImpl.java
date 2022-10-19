@@ -37,13 +37,13 @@ public class FlightServiceImpl implements FlightService {
 		}
 	}
 
-	
+	// viewing all flight
 	@Override
 	public Iterable<Flight> viewAllFlight() {
 		return flightDao.findAll();
 	}
 
-	
+	// view flight by id
 	@Override
 	public Flight viewFlight(BigInteger flightNumber) {
 		Optional<Flight> findById = flightDao.findById(flightNumber);
@@ -54,6 +54,7 @@ public class FlightServiceImpl implements FlightService {
 			throw new RecordNotFoundException("Flight with number: " + flightNumber + " not exists");
 	    }
 	
+	// modify flight
 	@Override
 	public Flight modifyFlight(Flight flight) {
 		Optional<Flight> findById = flightDao.findById(flight.getFlightNo());
@@ -64,7 +65,7 @@ public class FlightServiceImpl implements FlightService {
 		return flight;
 	}
 
-	
+	// delete flight by id
 	public String removeFlight(BigInteger flightNumber) {
 		Optional<Flight> findById = flightDao.findById(flightNumber);
 		if (findById.isPresent()) {

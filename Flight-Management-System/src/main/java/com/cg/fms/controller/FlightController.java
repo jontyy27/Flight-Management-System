@@ -28,6 +28,7 @@ public class FlightController {
 	@Autowired(required = true)
 	FlightService flightService;
 
+	// Add flight
 	@PostMapping("/addFlight")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
@@ -35,17 +36,20 @@ public class FlightController {
 		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
+	// View all flight
 	@GetMapping("/allFlight")
 	public Iterable<Flight> viewAllFlight() {
 		return flightService.viewAllFlight();
 	}
 
+	// View flight by ID
 	@GetMapping("/viewFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public Flight viewFlight(@PathVariable("id") BigInteger flightNo) {
 		return flightService.viewFlight(flightNo);
 	}
 
+	// Update flight
 	@PutMapping("/updateFlight")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<Flight> modifyFlight(@RequestBody Flight flight) {
@@ -53,6 +57,7 @@ public class FlightController {
 		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
+	// Delete flight by ID
 	@DeleteMapping("/deleteFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String removeFlight(@PathVariable("id") BigInteger flightNo) {

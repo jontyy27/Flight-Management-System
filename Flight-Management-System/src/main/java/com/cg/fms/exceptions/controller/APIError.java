@@ -1,4 +1,4 @@
-package com.cg.fms.dto;
+package com.cg.fms.exceptions.controller;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -6,16 +6,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class APIError {
 
 	private String msg;
-	private int status;
+	private int error;
 
 	public APIError() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public APIError(String msg, int status) {
+	public APIError(String msg, int error) {
 		super();
 		this.msg = msg;
-		this.status = status;
+		this.error = error;
 	}
 
 	public String getMsg() {
@@ -26,12 +26,12 @@ public class APIError {
 		this.msg = msg;
 	}
 
-	public int getStatus() {
-		return status;
+	public int getError() {
+		return error;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setError(int error) {
+		this.error = error;
 	}
 
 }
