@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.exception.ScheduledFlightNotFoundException;
+import com.cg.fms.dto.Booking;
 import com.cg.fms.dto.Schedule;
 import com.cg.fms.dto.ScheduledFlight;
 import com.cg.fms.service.AirportService;
@@ -41,15 +44,27 @@ public class ScheduledFlightController {
 	
 	 // Controller for adding Scheduled Flights
 	 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PostMapping("/add")
+	//@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PostMapping("/addSF")
+	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
+		scheduleFlightService.addScheduledFlight(newscheduleFlight);
+		return new ResponseEntity<ScheduledFlight>(newscheduleFlight, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	/*
 	public ResponseEntity<ScheduledFlight> addSF(@ModelAttribute ScheduledFlight scheduledFlight,
-			@RequestParam(name = "srcAirport") String source, @RequestParam(name = "dstnAirport") String destination,
-			@RequestParam(name = "deptDateTime") String departureTime, @RequestParam(name = "arrDateTime") String arrivalTime) {
-		Schedule schedule = new Schedule();
+			@RequestParam(name = "srcAirport", required=false) String source, @RequestParam(name = "dstnAirport", required=false) String destination,
+			@RequestParam(name = "deptDateTime", required=false) String departureTime, @RequestParam(name = "arrDateTime", required=false) String arrivalTime) {
+		System.out.println("Inside controller");
+		//Schedule schedule = ScheduleFlight.get;
+		scheduledFlight.getSchedule().getDstnAirport();
+		System.out.println(scheduledFlight.getSchedule().getDstnAirport());
 		schedule.setScheduleId(scheduledFlight.getScheduleFlightId());
 		try {
-			schedule.setSrcAirPort(airportService.viewAirport(source));
+			schedule.setSrcAirport(airportService.viewAirport(source));
 		} catch(RecordNotFoundException e) {
 			return new ResponseEntity("Airport Not Found", HttpStatus.BAD_REQUEST);
 		}
@@ -77,7 +92,7 @@ public class ScheduledFlightController {
 			return new ResponseEntity("Error adding Flight." + e, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+*/
 	
 	 // Controller for modifying existing Scheduled Flights
 	 

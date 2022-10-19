@@ -3,6 +3,7 @@ package com.cg.fms.controller;
 import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,8 +29,9 @@ public class BookingController {
 	
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public void addBooking(@RequestBody Booking newBooking) {
+	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {
 		bookingService.addBooking(newBooking);
+		return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
 	}
 	
 	@GetMapping("/displayAllBooking")
@@ -40,8 +42,9 @@ public class BookingController {
 
 	@PutMapping("/updateBooking")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void modifyBooking(@RequestBody Booking updateBooking) {
+	public ResponseEntity<Booking> modifyBooking(@RequestBody Booking updateBooking) {
 		bookingService.updateBooking(updateBooking);
+		return new ResponseEntity<Booking>(updateBooking, HttpStatus.OK);
 	}
 	
 	@GetMapping("/searchBooking/{id}")
@@ -52,8 +55,9 @@ public class BookingController {
 	
 	@DeleteMapping("/deleteBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void deleteBookingByID(@PathVariable("id") BigInteger bookingId) {
+	public String deleteBookingByID(@PathVariable("id") BigInteger bookingId) {
 		bookingService.deleteBooking(bookingId);
+		return "The Booking is deleted for Booking ID :"+bookingId;
 	}
 }
 

@@ -1,7 +1,5 @@
 package com.cg.fms.service;
 
-import org.springframework.http.ResponseEntity;
-
 import com.cg.fms.dto.Airport;
 
 public interface AirportService {
@@ -9,7 +7,7 @@ public interface AirportService {
 
 	public Airport viewAirport(String airportCode);
 
-	public ResponseEntity<?> addAirport(Airport airport);
+	public Airport addAirport(Airport airport);
 
 	public Airport modifyAirport(Airport airport);
 

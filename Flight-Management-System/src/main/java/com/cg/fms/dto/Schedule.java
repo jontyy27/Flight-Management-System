@@ -12,7 +12,8 @@ public class Schedule {
       private BigInteger scheduleId;
 	  
 	  @OneToOne
-      private Airport srcAirPort;
+	 // @JoinColumn(name="")
+      private Airport srcAirport;
 	  
 	  @OneToOne
       private Airport dstnAirport;
@@ -26,10 +27,10 @@ public class Schedule {
     	  
       }
 
-      public Schedule(BigInteger scheduleId,Airport srcAirPort, Airport dstnAirport, String deptDateTime, String arrDateTime) {
+      public Schedule(BigInteger scheduleId,Airport srcAirport, Airport dstnAirport, String deptDateTime, String arrDateTime) {
     	  super();
     	  this.scheduleId=scheduleId;
-    	  this.srcAirPort=srcAirPort;
+    	  this.srcAirport=srcAirport;
     	  this.dstnAirport=dstnAirport;
     	  this.deptDateTime=deptDateTime;
     	  this.arrDateTime=arrDateTime;
@@ -40,11 +41,11 @@ public class Schedule {
 	public void setScheduleId(BigInteger scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-	public Airport getSrcAirPort() {
-		return srcAirPort;
+	public Airport getSrcAirport() {
+		return srcAirport;
 	}
-	public void setSrcAirPort(Airport srcAirPort) {
-		this.srcAirPort = srcAirPort;
+	public void setSrcAirport(Airport srcAirport) {
+		this.srcAirport = srcAirport;
 	}
 	public Airport getDstnAirport() {
 		return dstnAirport;
@@ -66,7 +67,7 @@ public class Schedule {
 	}
     @Override
 	public String toString() {
-		return "Schedule [scheduleId=" + scheduleId + ", srcAirPort=" + srcAirPort + ", dstnAirport=" + dstnAirport
+		return "Schedule [scheduleId=" + scheduleId + ", srcAirport=" + srcAirport + ", dstnAirport=" + dstnAirport
 				+ ", deptDateTime=" + deptDateTime + ", arrDateTime=" + arrDateTime + "]";
 	}
 	@Override
@@ -77,7 +78,7 @@ public class Schedule {
 		result=prime*result+((deptDateTime==null) ? 0 :deptDateTime.hashCode());
 		result=prime*result+((dstnAirport==null) ? 0 :dstnAirport.hashCode());
 		result=prime*result+((scheduleId==null) ? 0 :scheduleId.hashCode());
-		result=prime*result+((srcAirPort==null) ? 0 :srcAirPort.hashCode());
+		result=prime*result+((srcAirport==null) ? 0 :srcAirport.hashCode());
 		return result;
 	}
 	@Override
@@ -109,10 +110,10 @@ public class Schedule {
 				return false;
 		}else if(!scheduleId.equals(other.scheduleId))
 			return false;
-		if(srcAirPort==null) {
-			if(other.srcAirPort!=null)
+		if(srcAirport==null) {
+			if(other.srcAirport!=null)
 				return false;
-		}else if(!srcAirPort.equals(other.srcAirPort))
+		}else if(!srcAirport.equals(other.srcAirport))
 			return false;
 		return true;
 	}

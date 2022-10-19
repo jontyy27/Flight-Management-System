@@ -9,7 +9,7 @@ import com.cg.fms.dto.Booking;
 public interface BookingService {
 	
 
-	public ResponseEntity<Booking> addBooking(Booking newBooking);
+	public Booking addBooking(Booking newBooking);
 	
 	public Booking updateBooking(Booking changedBooking);
 	

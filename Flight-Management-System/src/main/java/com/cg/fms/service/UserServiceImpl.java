@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cg.fms.secure.model.User;
+import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.UserDao;
 
@@ -21,17 +22,19 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(User newUser) {
-		//Optional<User> findUserById = userDao.findById(newUser.getUserId());
-		//try {
-			//if(!findUserById.isPresent()) {
+		Optional<User> findUserById = userDao.findById(newUser.getUserId());
+		try {
+			if(findUserById.isPresent()) {
+				throw new RecordAlreadyPresentException("User with Id: "+ newUser.getUserId() +" already exists!!");
+				
+			} else {
 				userDao.save(newUser);
-				//return new ResponseEntity<User>(newUser, HttpStatus.OK);
-			//} else
-				//throw new RecordAlreadyPresentException("User with Id: "+ newUser.getUserId() +" already exists!!");
-		//} catch (RecordAlreadyPresentException e) {
-			//return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-		//}
-		return newUser;
+				return newUser;
+			}
+				
+		} catch (RecordAlreadyPresentException e) {
+			return newUser;
+		}
 	}
 
 	@Override

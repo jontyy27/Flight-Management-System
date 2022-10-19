@@ -4,6 +4,8 @@ package com.cg.fms.controller;
 import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +30,9 @@ public class FlightController {
 
 	@PostMapping("/addFlight")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public void addFlight(@RequestBody Flight flight) {
+	public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
 		flightService.addFlight(flight);
+		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
 	@GetMapping("/allFlight")
@@ -45,13 +48,15 @@ public class FlightController {
 
 	@PutMapping("/updateFlight")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void modifyFlight(@RequestBody Flight flight) {
+	public ResponseEntity<Flight> modifyFlight(@RequestBody Flight flight) {
 		flightService.modifyFlight(flight);
+		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deleteFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void removeFlight(@PathVariable("id") BigInteger flightNo) {
+	public String removeFlight(@PathVariable("id") BigInteger flightNo) {
 		flightService.removeFlight(flightNo);
+		return "The Deleted Flight is "+flightNo;
 	}
 }
