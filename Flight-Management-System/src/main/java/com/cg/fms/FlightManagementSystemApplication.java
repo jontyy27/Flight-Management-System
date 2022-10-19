@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FlightManagementSystemApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Inside main method");
 		SpringApplication.run(FlightManagementSystemApplication.class, args);
+		System.out.println("Outside main method");
 	}
 
 }
