@@ -19,19 +19,19 @@ public class Booking {
 	private BigInteger bookingId;
 	
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "User_Id")
 	private User userId;
 	
 	private LocalDate bookingDate;
 	
 	@OneToOne(cascade = CascadeType.ALL, targetEntity = Passenger.class)
-	@JoinColumn(name = "passenger")
+	@JoinColumn(name = "List_Passengers")
 	private List<Passenger> passenger;
 	
 	private double ticketCost;
 	
 	@OneToOne
-	@JoinColumn(name = "flight")
+	@JoinColumn(name = "Flight_No")
 	private Flight flight;
 	
 	private Integer noOfPassengers;

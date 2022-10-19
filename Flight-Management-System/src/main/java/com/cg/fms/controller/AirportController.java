@@ -1,6 +1,8 @@
 package com.cg.fms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,19 +36,22 @@ public class AirportController {
 
 	@PostMapping("/addAirport")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public void addAirport(@RequestBody Airport airport) {
+	public ResponseEntity<Airport> addAirport(@RequestBody Airport airport) {
 		airportService.addAirport(airport);
+		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateAirport")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void modifyAirport(@RequestBody Airport airport) {
+	public ResponseEntity<Airport> modifyAirport(@RequestBody Airport airport) {
 		airportService.modifyAirport(airport);
+		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deleteAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void removeAirport(@PathVariable("id") String airportCode) {
+	public String removeAirport(@PathVariable("id") String airportCode) {
 		airportService.removeAirport(airportCode);
+		return "Airport "+airportCode+"is Deleted";
 	}
 }

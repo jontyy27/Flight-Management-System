@@ -1,17 +1,17 @@
 package com.cg.fms.service;
 
 
-import com.cg.fms.exception.*;
 import java.math.BigInteger;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.cg.fms.repository.FlightDao;
 //import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.dto.Flight;
+import com.cg.fms.exception.RecordAlreadyPresentException;
+import com.cg.fms.exception.RecordNotFoundException;
+import com.cg.fms.repository.FlightDao;
 
 @Service
 public class FlightServiceImpl implements FlightService {
@@ -22,18 +22,18 @@ public class FlightServiceImpl implements FlightService {
 	 // Adding a flight
 	 
 	@Override
-	public ResponseEntity<Flight> addFlight(Flight flight) {
+	public Flight addFlight(Flight flight) {
 		Optional<Flight> findById = flightDao.findById(flight.getFlightNo());
 		try {
 		if (!findById.isPresent()) {
 			flightDao.save(flight);
-			return new ResponseEntity<Flight>(flight,HttpStatus.OK);
+			return flight;
 		} else
 			throw new RecordAlreadyPresentException("Flight with number: " + flight.getFlightNo() + " already present");
 	}
 		catch(RecordAlreadyPresentException e)
 		{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return flight;
 		}
 	}
 

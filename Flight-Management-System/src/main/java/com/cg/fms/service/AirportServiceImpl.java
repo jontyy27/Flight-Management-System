@@ -2,8 +2,6 @@ package com.cg.fms.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cg.fms.dto.Airport;
@@ -48,12 +46,12 @@ public class AirportServiceImpl implements AirportService {
 	 // adding a airport
 	 
 	@Override
-	public ResponseEntity<?> addAirport(Airport airport) {
+	public Airport addAirport(Airport airport) {
 		Optional<Airport> findById = airportDao.findById(airport.getAirportCode());
 		try {
 		if (!findById.isPresent()) {
 			airportDao.save(airport);
-			return new ResponseEntity<Airport>(airport,HttpStatus.OK);
+			return airport;
 		} 
 		else
 			throw new RecordAlreadyPresentException(
@@ -61,7 +59,7 @@ public class AirportServiceImpl implements AirportService {
 	     }
 		catch(RecordAlreadyPresentException e)
 		{
-			return new ResponseEntity<Airport>(airport,HttpStatus.NOT_FOUND);
+			return airport;
 		}
 	}
 

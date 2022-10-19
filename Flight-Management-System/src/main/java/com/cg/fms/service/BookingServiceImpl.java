@@ -23,16 +23,16 @@ public class BookingServiceImpl implements BookingService{
 	
 	// Making new Booking
 	@Override
-	public ResponseEntity<Booking> addBooking(Booking newBooking) {
+	public Booking addBooking(Booking newBooking) {
 		Optional<Booking> findBookingById = bookingDao.findById(newBooking.getBookingId());
 		try {
 			if(!findBookingById.isPresent()) {
 				bookingDao.save(newBooking);
-				return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
+				return newBooking;
 			} else
 				throw new RecordAlreadyPresentException("Booking with Booking ID: "+ newBooking.getBookingId() +" already exists!!");
 		} catch(RecordAlreadyPresentException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return newBooking;
 		}
 	}
 	

@@ -40,8 +40,9 @@ public class UserController {
 
 	@PutMapping("/updateUser")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void modifyUser(@RequestBody User updatedUser) {
+	public ResponseEntity<User> modifyUser(@RequestBody User updatedUser) {
 		userService.updateUser(updatedUser);
+		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 	}
 	
 	@GetMapping("/searchUser/{id}")
@@ -52,8 +53,9 @@ public class UserController {
 	
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public void deleteBookingByID(@PathVariable("id") int userId) {
+	public String deleteBookingByID(@PathVariable("id") int userId) {
 		userService.deleteUser(userId);
+		return "The deleted user id is "+userId;
 	}
 
 }

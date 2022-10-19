@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name = "Users")
 public class User {
 	
-  private String userType;
+  
   @Id
   private int userId;
   private String username;
@@ -16,6 +16,7 @@ public class User {
   private BigInteger userPhone;
   private String email;
   private String role;
+  private String userType;
   
   public User() {
 	  
