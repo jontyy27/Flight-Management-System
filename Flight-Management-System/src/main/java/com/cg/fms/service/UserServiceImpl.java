@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	// deleting a user by id
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ResponseEntity<?> deleteUser(int userId) {
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService{
 		else
 			throw new RecordNotFoundException("User not found for the entered UserID");
 	} catch(RecordNotFoundException e) {
-		return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+	return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	}
 

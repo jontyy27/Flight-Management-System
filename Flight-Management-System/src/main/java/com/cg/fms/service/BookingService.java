@@ -9,13 +9,13 @@ import com.cg.fms.dto.Booking;
 public interface BookingService {
 	
 
-	public Booking addBooking(Booking newBooking);
+	public ResponseEntity<?> addBooking(Booking newBooking);
 	
-	public Booking updateBooking(Booking changedBooking);
+	public ResponseEntity<?> updateBooking(Booking changedBooking);
 	
 	public Iterable<Booking> displayAllBooking();
 	
-	public String deleteBooking(BigInteger bookingId);
+	public ResponseEntity<?> deleteBooking(BigInteger bookingId);
 	
 	public ResponseEntity<?> viewBookingById(BigInteger bookingId);
 }
