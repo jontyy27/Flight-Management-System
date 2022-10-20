@@ -21,8 +21,9 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 	
 	// adding a user
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public User createUser(User newUser) {
+	public ResponseEntity<?> createUser(User newUser) {
 		Optional<User> findUserById = userDao.findById(newUser.getUserId());
 		try {
 			if(findUserById.isPresent()) {
@@ -30,37 +31,51 @@ public class UserServiceImpl implements UserService{
 				
 			} else {
 				userDao.save(newUser);
-				return newUser;
+				return new ResponseEntity<User>(newUser, HttpStatus.OK);
 			}
 				
 		} catch (RecordAlreadyPresentException e) {
-			return newUser;
+			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
 
 	// updating a user
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public User updateUser(User updatedUser) {
+	public ResponseEntity<?> updateUser(User updatedUser) {
 		Optional<User> findUserById = userDao.findById(updatedUser.getUserId());
-		
+		try {
 			if(findUserById.isPresent()) {
 				userDao.save(updatedUser);
+				return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 			} else
 				throw new RecordNotFoundException("User with Id: "+ updatedUser.getUserId() + " not exists!!");
-			
-			return updatedUser;
+		}catch(RecordNotFoundException e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
 
 	// deleting a user by id
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public String deleteUser(int userId) {
+	public ResponseEntity<?> deleteUser(int userId) {
 		Optional<User> findUserById = userDao.findById(userId);
-		
+	try {	
 		if(findUserById.isPresent()) {
+			User deleteId= findUserById.get();
 			userDao.deleteById(userId);
+<<<<<<< HEAD
 			return "User Deleted!";
 		} else
+=======
+			return new ResponseEntity<User>(deleteId, HttpStatus.OK);		
+			}
+		else
+>>>>>>> 6b05cbfd9c73f7f294787ca825b8c32acc54769d
 			throw new RecordNotFoundException("User not found for the entered UserID");
+	} catch(RecordNotFoundException e) {
+		return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+	}
 	}
 
 	// view all user
@@ -73,10 +88,10 @@ public class UserServiceImpl implements UserService{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ResponseEntity<?> viewUserById(int userId) {
-		Optional<User> findById = userDao.findById(userId);
+		Optional<User> findUserById = userDao.findById(userId);
 		try {
-			if(findById.isPresent()) {
-				User findUser = findById.get();
+			if(findUserById.isPresent()) {
+				User findUser = findUserById.get();
 				return new ResponseEntity<User>(findUser, HttpStatus.OK);
 			} else
 				throw new RecordNotFoundException("No record found with ID " + userId);

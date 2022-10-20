@@ -25,7 +25,9 @@ public class ScheduleController {
 	@Autowired(required = true)
 	ScheduleService scheduleService;
 
+
 	// View schedule by ID
+
 	@GetMapping("/viewSchedule/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public Schedule viewSchedule(@PathVariable("id") BigInteger scheduleId) {
@@ -33,10 +35,12 @@ public class ScheduleController {
 	}
 
 	// View all schedule
+
 	@GetMapping("/allSchedule")
 	public Iterable<Schedule> viewAllSchedule() {
 		return scheduleService.viewAllSchedule();
 	}
+
 
 	// Add a schedule
 	@PostMapping("/addSchedule")
@@ -46,6 +50,7 @@ public class ScheduleController {
 		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
 	}
 
+
 	// Update schedule
 	@PutMapping("/updateSchedule")
 	@ExceptionHandler(RecordNotFoundException.class)
@@ -53,6 +58,7 @@ public class ScheduleController {
 		scheduleService.modifySchedule(schedule);
 		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
 	}
+
 
 	// Delete schedule by ID
 	@DeleteMapping("/deleteSchedule/{id}")

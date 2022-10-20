@@ -28,9 +28,9 @@ public class UserController {
 	// Add user
 	@PostMapping("/createUser")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public ResponseEntity<User> addUser(@RequestBody User newUser) {
-		userService.createUser(newUser);
-		return new ResponseEntity<User>(newUser, HttpStatus.OK);
+	public ResponseEntity<?> addUser(@RequestBody User newUser) {
+		return userService.createUser(newUser);
+	
 		
 	}
 	
@@ -43,9 +43,10 @@ public class UserController {
 	// Update user
 	@PutMapping("/updateUser")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<User> modifyUser(@RequestBody User updatedUser) {
-		userService.updateUser(updatedUser);
-		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+	public ResponseEntity<?> modifyUser(@RequestBody User updatedUser) {
+		return userService.updateUser(updatedUser);
+
+
 	}
 	
 	// Search user by ID
@@ -58,9 +59,16 @@ public class UserController {
 	// Delete user by ID
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
+<<<<<<< HEAD
 	public String deleteBookingByID(@PathVariable("id") int userId) {
 		return userService.deleteUser(userId);
 		//return new ResponseEntity<User>(HttpStatus.OK);
 	}
+=======
+	public ResponseEntity<?> deleteBookingByID(@PathVariable("id") int userId) {
+		return userService.deleteUser(userId);
+	
+				}
+>>>>>>> 6b05cbfd9c73f7f294787ca825b8c32acc54769d
 
 }

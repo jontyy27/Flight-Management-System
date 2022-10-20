@@ -2,10 +2,15 @@ package com.cg.fms.dto;
 
 import java.math.BigInteger;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
+
 public class Passenger {
 	@Id
 	private BigInteger pnrNumber;
@@ -13,6 +18,20 @@ public class Passenger {
 	private Integer passengerAge;
 	private BigInteger passengerUIN;
 	private Double luggage;
+	
+public Passenger() {
+		super();
+	}
+@JsonCreator
+	public Passenger(@JsonProperty("pnrNumber")BigInteger pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
+			@JsonProperty("luggage")Double luggage) {
+		super();
+		this.pnrNumber = pnrNumber;
+		this.pasengerName = pasengerName;
+		this.passengerAge = passengerAge;
+		this.passengerUIN = passengerUIN;
+		this.luggage = luggage;
+	}
 	public BigInteger getPnrNumber() {
 		return pnrNumber;
 	}

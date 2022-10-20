@@ -27,7 +27,9 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	
+
 	// Add Booking
+
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {

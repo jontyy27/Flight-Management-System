@@ -6,13 +6,16 @@ import com.cg.fms.secure.model.User;
 
 public interface UserService {
 	
-	public User createUser(User newUser);
+	public ResponseEntity<?> createUser(User newUser);
 	
-    public User updateUser(User updatedUser);
+    public ResponseEntity<?> updateUser(User updatedUser);
 	
-	public String deleteUser(int userId);
+	public ResponseEntity<?> deleteUser(int userId);
 	
 	public Iterable<User> displayAllUser();
 	
 	public ResponseEntity<?> viewUserById(int userId);
+
+
+
 }

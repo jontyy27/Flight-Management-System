@@ -10,10 +10,11 @@ import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.exception.ScheduledFlightNotFoundException;
 
 @RestControllerAdvice // acts as a catch block
+
 public class ExceptionsHandler {
 	
 	/*Record Already Present Exception Handler*/
-	@ExceptionHandler(RecordAlreadyPresentException.class)
+	@ExceptionHandler(value=RecordAlreadyPresentException.class)
 	public ResponseEntity<APIError> RecordAlreadyPresentExceptionHandler(Exception e){
 		APIError error = new APIError("Record already present in database",404);
 		

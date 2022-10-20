@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,18 +40,31 @@ public class ScheduledFlightController {
 	FlightService flightService;
 
 	
+
+	 // Controller for adding Scheduled Flights
+	 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	/*
+	
+	//@SuppressWarnings({ "unchecked", "rawtypes" })
+	
+
 	@PostMapping("/addSF")
 	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
 		scheduleFlightService.addScheduledFlight(newscheduleFlight);
 		return new ResponseEntity<ScheduledFlight>(newscheduleFlight, HttpStatus.OK);
-	}*/
+
+	}
+	
+	
+	/*
+	@PostMapping("/addSF")
+	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight scheduledFlight,
+
 	
 	 // Controller for adding Scheduled Flights
 	
 	@PostMapping("/addSF")
-	public ResponseEntity<ScheduledFlight> addSF(@ModelAttribute ScheduledFlight scheduledFlight,
+	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight scheduledFlight,
 			@RequestParam(name = "srcAirport") String source, @RequestParam(name = "dstnAirport") String destination,
 			@RequestParam(name = "deptDateTime") String departureTime, @RequestParam(name = "arrDateTime") String arrivalTime) {
 		System.out.println("Inside controller");
@@ -87,7 +101,7 @@ public class ScheduledFlightController {
 			return new ResponseEntity("Error adding Flight." + e, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+*/
 	
 	 // Controller for modifying existing Scheduled Flights
 	 
