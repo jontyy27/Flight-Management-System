@@ -32,9 +32,10 @@ public class BookingController {
 
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {
-		bookingService.addBooking(newBooking);
-		return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
+	public ResponseEntity<?> addBooking(@RequestBody Booking newBooking) {
+		return bookingService.addBooking(newBooking);
+		
+		
 	}
 	
 	//Display all bookings
@@ -46,9 +47,9 @@ public class BookingController {
 	// Update booking
 	@PutMapping("/updateBooking")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<Booking> modifyBooking(@RequestBody Booking updateBooking) {
-		bookingService.updateBooking(updateBooking);
-		return new ResponseEntity<Booking>(updateBooking, HttpStatus.OK);
+	public ResponseEntity<?> modifyBooking(@RequestBody Booking updateBooking) {
+		return bookingService.updateBooking(updateBooking);
+		
 	}
 	
 	// Search booking by ID
@@ -61,9 +62,9 @@ public class BookingController {
 	// Delete booking by ID
 	@DeleteMapping("/deleteBooking/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public String deleteBookingByID(@PathVariable("id") BigInteger bookingId) {
-		bookingService.deleteBooking(bookingId);
-		return "The Booking is deleted for Booking ID :"+bookingId;
+	public ResponseEntity<?> deleteBookingByID(@PathVariable("id") BigInteger bookingId) {
+		return bookingService.deleteBooking(bookingId);
+	
 	}
 }
 

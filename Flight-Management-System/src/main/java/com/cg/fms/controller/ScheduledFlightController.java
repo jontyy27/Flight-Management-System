@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.exception.ScheduledFlightNotFoundException;
 import com.cg.fms.dto.Schedule;
@@ -49,9 +50,10 @@ public class ScheduledFlightController {
 	
 
 	@PostMapping("/addSF")
-	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
-		scheduleFlightService.addScheduledFlight(newscheduleFlight);
-		return new ResponseEntity<ScheduledFlight>(newscheduleFlight, HttpStatus.OK);
+	@ExceptionHandler(RecordAlreadyPresentException.class)
+	public ResponseEntity<?> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
+		return scheduleFlightService.addScheduledFlight(newscheduleFlight);
+
 
 	}
 	
@@ -62,7 +64,8 @@ public class ScheduledFlightController {
 
 	
 	 // Controller for adding Scheduled Flights
-	
+	  
+	@ExceptionHandler(RecordAlreadyPresentException.class)
 	@PostMapping("/addSF")
 	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight scheduledFlight,
 			@RequestParam(name = "srcAirport") String source, @RequestParam(name = "dstnAirport") String destination,
@@ -107,35 +110,28 @@ public class ScheduledFlightController {
 	 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PutMapping("/modifySF")
-	public ResponseEntity<ScheduledFlight> modifyScheduleFlight(@ModelAttribute ScheduledFlight scheduleFlight) {
-		ScheduledFlight modifySFlight = scheduleFlightService.modifyScheduledFlight(scheduleFlight);
-		if (modifySFlight == null) {
-			return new ResponseEntity("Flight not modified", HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			return new ResponseEntity<ScheduledFlight>(modifySFlight, HttpStatus.OK);
-		}
+	@ExceptionHandler(ScheduledFlightNotFoundException.class)
+	public ResponseEntity<?> modifyScheduleFlight(@ModelAttribute ScheduledFlight scheduleFlight) {
+			return scheduleFlightService.updateScheduledFlight(scheduleFlight);
+			
 	}
 
 	 // Controller for deleting existing Scheduled Flights
 	
 	@DeleteMapping("/deleteSF")
-	public String deleteSF(@RequestParam BigInteger flightId) throws RecordNotFoundException {
+	@ExceptionHandler(RecordNotFoundException.class)
+	public ResponseEntity<?> deleteSF(@RequestParam BigInteger flightId)  {
 		return scheduleFlightService.removeScheduledFlight(flightId);
 	}
 
 	
 	 // Controller for viewing a Scheduled Flight by ID
 	 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	@GetMapping("/searchSF/{id}")
 	@ExceptionHandler(ScheduledFlightNotFoundException.class)
-	public ResponseEntity<ScheduledFlight> viewSF(@RequestParam BigInteger flightId) throws ScheduledFlightNotFoundException {
-		ScheduledFlight searchSFlight = scheduleFlightService.viewScheduledFlight(flightId);
-		if (searchSFlight == null) {
-			return new ResponseEntity("Flight not present", HttpStatus.BAD_REQUEST);
-		} else {
-			return new ResponseEntity<ScheduledFlight>(searchSFlight, HttpStatus.OK);
-		}
+	public ResponseEntity<?> viewSF(@RequestParam BigInteger flightId) {
+		return scheduleFlightService.viewScheduledFlight(flightId);
 	}
 
 	 // Controller for viewing all Scheduled Flights

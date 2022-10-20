@@ -18,10 +18,10 @@ public class Passenger {
 	private Integer passengerAge;
 	private BigInteger passengerUIN;
 	private Double luggage;
+
 	
-public Passenger() {
-		super();
-	}
+
+
 @JsonCreator
 	public Passenger(@JsonProperty("pnrNumber")BigInteger pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
 			@JsonProperty("luggage")Double luggage) {
@@ -32,6 +32,15 @@ public Passenger() {
 		this.passengerUIN = passengerUIN;
 		this.luggage = luggage;
 	}
+	
+	
+
+
+public Passenger() {
+	super();
+}
+	
+	
 	public BigInteger getPnrNumber() {
 		return pnrNumber;
 	}
