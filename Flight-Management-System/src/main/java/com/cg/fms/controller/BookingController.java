@@ -33,6 +33,7 @@ public class BookingController {
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {
+		System.out.println("inside create booking");
 		bookingService.addBooking(newBooking);
 		return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
 	}

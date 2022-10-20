@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Passenger {
 	@Id
-	private BigInteger pnrNumber;
+	private int pnrNumber;
 	private String pasengerName;
 	private Integer passengerAge;
 	private BigInteger passengerUIN;
@@ -23,7 +23,7 @@ public Passenger() {
 		super();
 	}
 @JsonCreator
-	public Passenger(@JsonProperty("pnrNumber")BigInteger pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
+	public Passenger(@JsonProperty("pnrNumber")int pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
 			@JsonProperty("luggage")Double luggage) {
 		super();
 		this.pnrNumber = pnrNumber;
@@ -32,10 +32,10 @@ public Passenger() {
 		this.passengerUIN = passengerUIN;
 		this.luggage = luggage;
 	}
-	public BigInteger getPnrNumber() {
+	public int getPnrNumber() {
 		return pnrNumber;
 	}
-	public void setPnrNumber(BigInteger pnrNumber) {
+	public void setPnrNumber(int pnrNumber) {
 		this.pnrNumber = pnrNumber;
 	}
 	public String getPasengerName() {

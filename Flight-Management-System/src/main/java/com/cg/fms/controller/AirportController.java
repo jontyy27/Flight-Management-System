@@ -20,14 +20,15 @@ import com.cg.fms.service.AirportService;
 @RestController
 @RequestMapping("/airport")
 public class AirportController {
+	
 	@Autowired(required = true)
 	AirportService airportService;
 
 	// View airport by ID
 	@GetMapping("/viewAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public Airport viewAirport(@PathVariable("id") String airportCode) {
-		return airportService.viewAirport(airportCode);
+	public ResponseEntity<?> viewAirport(@PathVariable("id") String airportName) {
+		return airportService.viewAirport(airportName);
 	}
 
 	//View all airport
@@ -39,24 +40,21 @@ public class AirportController {
 	// Add new airport
 	@PostMapping("/addAirport")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public ResponseEntity<Airport> addAirport(@RequestBody Airport airport) {
-		airportService.addAirport(airport);
-		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
+	public ResponseEntity<?> addAirport(@RequestBody Airport airport) {
+		return airportService.addAirport(airport);
 	}
 
 	// Update airport
 	@PutMapping("/updateAirport")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<Airport> modifyAirport(@RequestBody Airport airport) {
-		airportService.modifyAirport(airport);
-		return new ResponseEntity<Airport>(airport, HttpStatus.OK);
+	public ResponseEntity<?> modifyAirport(@RequestBody Airport airport) {
+		return airportService.modifyAirport(airport);
 	}
 
 	// Delete airport by ID
 	@DeleteMapping("/deleteAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public String removeAirport(@PathVariable("id") String airportCode) {
-		airportService.removeAirport(airportCode);
-		return "Airport "+airportCode+"is Deleted";
+	public ResponseEntity<?> removeAirport(@PathVariable("id") String airportName) {
+		return airportService.removeAirport(airportName);
 	}
 }

@@ -1,7 +1,6 @@
 package com.cg.fms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -59,16 +58,7 @@ public class UserController {
 	// Delete user by ID
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-<<<<<<< HEAD
-	public String deleteBookingByID(@PathVariable("id") int userId) {
-		return userService.deleteUser(userId);
-		//return new ResponseEntity<User>(HttpStatus.OK);
-	}
-=======
 	public ResponseEntity<?> deleteBookingByID(@PathVariable("id") int userId) {
 		return userService.deleteUser(userId);
-	
-				}
->>>>>>> 6b05cbfd9c73f7f294787ca825b8c32acc54769d
-
+	}
 }

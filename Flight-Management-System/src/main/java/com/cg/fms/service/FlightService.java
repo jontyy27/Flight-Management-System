@@ -3,17 +3,19 @@ package com.cg.fms.service;
 
 import java.math.BigInteger;
 
+import org.springframework.http.ResponseEntity;
+
 import com.cg.fms.dto.Flight;
 
 public interface FlightService {
-	public Flight addFlight(Flight flight);
+	public ResponseEntity<?> addFlight(Flight flight);
 
 	public Iterable<Flight> viewAllFlight();
 
-	public Flight viewFlight(BigInteger flightNumber);
+	public ResponseEntity<?> viewFlight(BigInteger flightNo);
 
-	public Flight modifyFlight(Flight flight);
+	public ResponseEntity<?> modifyFlight(Flight flight);
 
-	public String removeFlight(BigInteger flightNumber);
+	public ResponseEntity<?> removeFlight(BigInteger flightNo);
 
 }

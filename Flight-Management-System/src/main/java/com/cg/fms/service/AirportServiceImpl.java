@@ -2,6 +2,8 @@ package com.cg.fms.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cg.fms.dto.Airport;
@@ -25,62 +27,79 @@ public class AirportServiceImpl implements AirportService {
 	
 	 // view airport by airportCode
 	 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public Airport viewAirport(String airportCode) {
-		Optional<Airport> findById = airportDao.findById(airportCode);
-		if (findById.isPresent()) {
-			return findById.get();
-		}	
-		else
-			throw new RecordNotFoundException("Airport with airport code: " + airportCode + "not exists");
-	    }
+	public ResponseEntity<?> viewAirport(String airportName) {
+		Optional<Airport> findById = airportDao.findById(airportName);
+		try {
+			if (findById.isPresent()) {
+				Airport findAirport = findById.get();
+				return new ResponseEntity<Airport>(findAirport, HttpStatus.OK);
+			}
+			else
+				throw new RecordNotFoundException("Airport with airport code: " + airportName + " not exists");
 		
+			}catch(RecordNotFoundException e) {
+				return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+	    }
+	}	
 	
 	 // adding a airport
 	 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Airport addAirport(Airport airport) {
-		Optional<Airport> findById = airportDao.findById(airport.getAirportCode());
+	public ResponseEntity<?> addAirport(Airport airport) {
+		Optional<Airport> findById = airportDao.findById(airport.getAirportName());
 		try {
-		if (!findById.isPresent()) {
+		   if(findById.isPresent()) {
+			   throw new RecordAlreadyPresentException(
+						"Airport with code : " + airport.getAirportName() + " already present");
+		   }else {
 			airportDao.save(airport);
-			return airport;
-		} 
-		else
-			throw new RecordAlreadyPresentException(
-					"Airport with code : " + airport.getAirportCode() + " already present");
-	     }
-		catch(RecordAlreadyPresentException e)
-		{
-			return airport;
+			return new ResponseEntity<Airport>(airport, HttpStatus.OK);
+		   } 
+		} catch(RecordAlreadyPresentException e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
 
 	
 	 // modifying an Airport
 	 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Airport modifyAirport(Airport airport) {
-		Optional<Airport> findById = airportDao.findById(airport.getAirportCode());
-		if (findById.isPresent()) {
-			airportDao.save(airport);
-		} 
-		else
-			throw new RecordNotFoundException("Airport with code: " + airport.getAirportCode() + " not exists");
-		return airport;
+	public ResponseEntity<?> modifyAirport(Airport airport) {
+		Optional<Airport> findById = airportDao.findById(airport.getAirportName());
+		try {
+			if (findById.isPresent()) {
+				airportDao.save(airport);
+				return new ResponseEntity<Airport>(airport,HttpStatus.OK);
+			}
+			else
+				throw new RecordNotFoundException("Airport with code: " + airport.getAirportName() + " not exists");
+		} catch(RecordNotFoundException e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 	
 	 // removing an airport
 	 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public String removeAirport(String airportCode) {
-		Optional<Airport> findById = airportDao.findById(airportCode);
-		if (findById.isPresent()) {
-			airportDao.deleteById(airportCode);
-			return "Airport removed";
-		} else
-			throw new RecordNotFoundException("Airport with code: " + airportCode + " not exists");
-
+	public ResponseEntity<?> removeAirport(String airportName) {
+		Optional<Airport> findById = airportDao.findById(airportName);
+		try {
+			if (findById.isPresent()) {
+				Airport deleteId = findById.get();
+				airportDao.deleteById(airportName);
+				return new ResponseEntity<Airport>(deleteId, HttpStatus.OK);
+		}
+		 else
+			throw new RecordNotFoundException("Airport with code: " + airportName + " not exists");
+		}catch(RecordNotFoundException e) {
+			return new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
+		}
 	}
 }

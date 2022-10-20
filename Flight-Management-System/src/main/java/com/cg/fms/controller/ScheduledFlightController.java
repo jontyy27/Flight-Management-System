@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.exception.ScheduledFlightNotFoundException;
-import com.cg.fms.dto.Schedule;
 import com.cg.fms.dto.ScheduledFlight;
 import com.cg.fms.service.AirportService;
 import com.cg.fms.service.FlightService;
@@ -43,11 +42,6 @@ public class ScheduledFlightController {
 
 	 // Controller for adding Scheduled Flights
 	 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	
-	//@SuppressWarnings({ "unchecked", "rawtypes" })
-	
-
 	@PostMapping("/addSF")
 	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
 		scheduleFlightService.addScheduledFlight(newscheduleFlight);

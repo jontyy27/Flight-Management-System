@@ -22,6 +22,7 @@ import com.cg.fms.service.ScheduleService;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
+	
 	@Autowired(required = true)
 	ScheduleService scheduleService;
 
@@ -30,7 +31,7 @@ public class ScheduleController {
 
 	@GetMapping("/viewSchedule/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public Schedule viewSchedule(@PathVariable("id") BigInteger scheduleId) {
+	public ResponseEntity<?> viewSchedule(@PathVariable("id") BigInteger scheduleId) {
 		return scheduleService.viewSchedule(scheduleId);
 	}
 
@@ -45,26 +46,23 @@ public class ScheduleController {
 	// Add a schedule
 	@PostMapping("/addSchedule")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
-		scheduleService.addSchedule(schedule);
-		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
+	public ResponseEntity<?> addSchedule(@RequestBody Schedule schedule) {
+		return scheduleService.addSchedule(schedule);
 	}
 
 
 	// Update schedule
 	@PutMapping("/updateSchedule")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<Schedule> modifySchedule(@RequestBody Schedule schedule) {
-		scheduleService.modifySchedule(schedule);
-		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
+	public ResponseEntity<?> modifySchedule(@RequestBody Schedule schedule) {
+		return scheduleService.modifySchedule(schedule);
 	}
 
 
 	// Delete schedule by ID
 	@DeleteMapping("/deleteSchedule/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public String removeSchedule(@PathVariable("id") BigInteger scheduleId) {
-		scheduleService.removeSchedule(scheduleId);
-		return "The " + scheduleId + " has been deleted";
+	public ResponseEntity<?> removeSchedule(@PathVariable("id") BigInteger scheduleId) {
+		return scheduleService.removeSchedule(scheduleId);
 	}
 }

@@ -1,16 +1,18 @@
 package com.cg.fms.service;
 
+import org.springframework.http.ResponseEntity;
+
 import com.cg.fms.dto.Airport;
 
 public interface AirportService {
 	public Iterable<Airport> viewAllAirport();
 
-	public Airport viewAirport(String airportCode);
+	public ResponseEntity<?> viewAirport(String airportName);
 
-	public Airport addAirport(Airport airport);
+	public ResponseEntity<?> addAirport(Airport airport);
 
-	public Airport modifyAirport(Airport airport);
+	public ResponseEntity<?> modifyAirport(Airport airport);
 
-	public String removeAirport(String airportCode);
+	public ResponseEntity<?> removeAirport(String airportName);
 }
 

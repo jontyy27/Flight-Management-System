@@ -25,15 +25,15 @@ import com.cg.fms.service.FlightService;
 @RestController
 @RequestMapping("/flight")
 public class FlightController {
+	
 	@Autowired(required = true)
 	FlightService flightService;
 
 	// Add flight
 	@PostMapping("/addFlight")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-	public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
-		flightService.addFlight(flight);
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+	public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
+		return flightService.addFlight(flight);
 	}
 
 	// View all flight
@@ -45,23 +45,21 @@ public class FlightController {
 	// View flight by ID
 	@GetMapping("/viewFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public Flight viewFlight(@PathVariable("id") BigInteger flightNo) {
+	public ResponseEntity<?> viewFlight(@PathVariable("id") BigInteger flightNo) {
 		return flightService.viewFlight(flightNo);
 	}
 
 	// Update flight
 	@PutMapping("/updateFlight")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public ResponseEntity<Flight> modifyFlight(@RequestBody Flight flight) {
-		flightService.modifyFlight(flight);
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+	public ResponseEntity<?> modifyFlight(@RequestBody Flight flight) {
+		return flightService.modifyFlight(flight);
 	}
 
 	// Delete flight by ID
 	@DeleteMapping("/deleteFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-	public String removeFlight(@PathVariable("id") BigInteger flightNo) {
-		flightService.removeFlight(flightNo);
-		return "The Deleted Flight is "+flightNo;
+	public ResponseEntity<?> removeFlight(@PathVariable("id") BigInteger flightNo) {
+		return flightService.removeFlight(flightNo);
 	}
 }

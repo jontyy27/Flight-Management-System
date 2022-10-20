@@ -1,16 +1,19 @@
 package com.cg.fms.service;
 
 import java.math.BigInteger;
+
+import org.springframework.http.ResponseEntity;
+
 import com.cg.fms.dto.Schedule;
 
 public interface ScheduleService {
 	public Iterable<Schedule> viewAllSchedule();
 
-	public Schedule viewSchedule(BigInteger scheduleId);
+	public ResponseEntity<?> viewSchedule(BigInteger scheduleId);
 
-	public Schedule addSchedule(Schedule schedule);
+	public ResponseEntity<?> addSchedule(Schedule schedule);
 
-	public Schedule modifySchedule(Schedule schedule);
+	public ResponseEntity<?> modifySchedule(Schedule schedule);
 
-	public String removeSchedule(BigInteger scheduleId);
+	public ResponseEntity<?> removeSchedule(BigInteger scheduleId);
 }

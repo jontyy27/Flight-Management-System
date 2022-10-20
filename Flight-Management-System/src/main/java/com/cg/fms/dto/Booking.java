@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.cg.fms.secure.model.User;
@@ -29,9 +30,8 @@ public class Booking {
 	
 	private LocalDate bookingDate;
 	
-	@OneToOne(cascade = CascadeType.ALL, targetEntity = Passenger.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Passenger.class)
 	@JoinColumn(name = "List_Passengers")
-	
 	private List<Passenger> passenger;
 	
 	private double ticketCost;
@@ -85,7 +85,4 @@ public class Booking {
 	public void setNoOfPassengers(Integer noOfPassengers) {
 		this.noOfPassengers = noOfPassengers;
 	}
-	
-	
-
 }

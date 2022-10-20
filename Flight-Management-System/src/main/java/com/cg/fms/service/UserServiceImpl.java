@@ -5,15 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.cg.fms.secure.model.User;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.UserDao;
-import com.cg.fms.secure.model.User;
 
-@Component
+
 @Service(value="userService")
 public class UserServiceImpl implements UserService{
 
@@ -64,14 +63,9 @@ public class UserServiceImpl implements UserService{
 		if(findUserById.isPresent()) {
 			User deleteId= findUserById.get();
 			userDao.deleteById(userId);
-<<<<<<< HEAD
-			return "User Deleted!";
-		} else
-=======
 			return new ResponseEntity<User>(deleteId, HttpStatus.OK);		
 			}
 		else
->>>>>>> 6b05cbfd9c73f7f294787ca825b8c32acc54769d
 			throw new RecordNotFoundException("User not found for the entered UserID");
 	} catch(RecordNotFoundException e) {
 		return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
