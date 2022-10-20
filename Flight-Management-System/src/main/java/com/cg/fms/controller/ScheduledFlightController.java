@@ -1,6 +1,9 @@
 package com.cg.fms.controller;
 
 import java.math.BigInteger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +30,7 @@ import com.cg.fms.service.ScheduledFlightService;
 @RequestMapping("/scheduledFlight")
 
 public class ScheduledFlightController {
+	private static final Logger LOGGER=LoggerFactory.getLogger(ScheduledFlightController.class);
 	
 	 // Creating Service object
 	 
@@ -51,6 +55,7 @@ public class ScheduledFlightController {
 	@PostMapping("/addSF")
 	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
 		scheduleFlightService.addScheduledFlight(newscheduleFlight);
+		LOGGER.info("inside class!!! ScheduledFlightController, method!!!: addSF ");
 		return new ResponseEntity<ScheduledFlight>(newscheduleFlight, HttpStatus.OK);
 
 	}
@@ -110,8 +115,10 @@ public class ScheduledFlightController {
 	public ResponseEntity<ScheduledFlight> modifyScheduleFlight(@ModelAttribute ScheduledFlight scheduleFlight) {
 		ScheduledFlight modifySFlight = scheduleFlightService.modifyScheduledFlight(scheduleFlight);
 		if (modifySFlight == null) {
+			LOGGER.info("inside class!!! ScheduledFlightController, method!!!: modifyScheduleFlight ");
 			return new ResponseEntity("Flight not modified", HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
+			LOGGER.info("inside class!!! ScheduledFlightController, method!!!: modifyScheduleFlight ");
 			return new ResponseEntity<ScheduledFlight>(modifySFlight, HttpStatus.OK);
 		}
 	}
@@ -120,6 +127,7 @@ public class ScheduledFlightController {
 	
 	@DeleteMapping("/deleteSF")
 	public String deleteSF(@RequestParam BigInteger flightId) throws RecordNotFoundException {
+		LOGGER.info("inside class!!! ScheduledFlightController, method!!!: deleteSF ");
 		return scheduleFlightService.removeScheduledFlight(flightId);
 	}
 
@@ -132,8 +140,10 @@ public class ScheduledFlightController {
 	public ResponseEntity<ScheduledFlight> viewSF(@RequestParam BigInteger flightId) throws ScheduledFlightNotFoundException {
 		ScheduledFlight searchSFlight = scheduleFlightService.viewScheduledFlight(flightId);
 		if (searchSFlight == null) {
+			LOGGER.info("inside class!!! ScheduledFlightController, method!!!: viewSF ");
 			return new ResponseEntity("Flight not present", HttpStatus.BAD_REQUEST);
 		} else {
+			LOGGER.info("inside class!!! ScheduledFlightController, method!!!: viewSF ");
 			return new ResponseEntity<ScheduledFlight>(searchSFlight, HttpStatus.OK);
 		}
 	}
@@ -142,6 +152,7 @@ public class ScheduledFlightController {
 	 
 	@GetMapping("/viewAll")
 	public Iterable<ScheduledFlight> viewAllSF() {
+		LOGGER.info("inside class!!! ScheduledFlightController, method!!!: viewAllSF ");
 		return scheduleFlightService.viewAllScheduledFlights();
 	}
 }
