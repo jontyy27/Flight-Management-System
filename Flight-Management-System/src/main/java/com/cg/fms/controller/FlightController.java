@@ -36,7 +36,6 @@ public class FlightController {
 	// Add flight
 	@PostMapping("/addFlight")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-
 	public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
 		LOGGER.info("inside class!!! FlightController, method!!!: addFlight ");
 		return flightService.addFlight(flight);

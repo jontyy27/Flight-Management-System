@@ -30,7 +30,6 @@ public class AirportController {
 	// View airport by ID
 	@GetMapping("/viewAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-
 	public ResponseEntity<?> viewAirport(@PathVariable("id") String airportName) {
 		LOGGER.info("inside class!!! AirportController, method!!!: viewAirport ");
 		return airportService.viewAirport(airportName);	
@@ -46,7 +45,6 @@ public class AirportController {
 	// Add new airport
 	@PostMapping("/addAirport")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-
 	public ResponseEntity<?> addAirport(@RequestBody Airport airport) {
 		LOGGER.info("inside class!!! AirportController, method!!!: addAirport ");
 		return airportService.addAirport(airport);
@@ -55,7 +53,6 @@ public class AirportController {
 	// Update airport
 	@PutMapping("/updateAirport")
 	@ExceptionHandler(RecordNotFoundException.class)
-
 	public ResponseEntity<?> modifyAirport(@RequestBody Airport airport) {
 		LOGGER.info("inside class!!! AirportController, method!!!: modifyAirport ");
 		return airportService.modifyAirport(airport);
@@ -64,7 +61,6 @@ public class AirportController {
 	// Delete airport by ID
 	@DeleteMapping("/deleteAirport/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-
 	public ResponseEntity<?> removeAirport(@PathVariable("id") String airportName) {
 		LOGGER.info("inside class!!! AirportController, method!!!: removeAirport ");
 		return airportService.removeAirport(airportName);
