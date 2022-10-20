@@ -3,6 +3,8 @@ package com.cg.fms.controller;
 
 import java.math.BigInteger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import com.cg.fms.service.FlightService;
 @RestController
 @RequestMapping("/flight")
 public class FlightController {
+	private static final Logger LOGGER=LoggerFactory.getLogger(FlightController.class);
 	@Autowired(required = true)
 	FlightService flightService;
 
@@ -33,12 +36,14 @@ public class FlightController {
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
 		flightService.addFlight(flight);
+		LOGGER.info("inside class!!! FlightController, method!!!: addFlight ");
 		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
 	// View all flight
 	@GetMapping("/allFlight")
 	public Iterable<Flight> viewAllFlight() {
+		LOGGER.info("inside class!!! FlightController, method!!!: viewAllFlight ");
 		return flightService.viewAllFlight();
 	}
 
@@ -46,6 +51,7 @@ public class FlightController {
 	@GetMapping("/viewFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public Flight viewFlight(@PathVariable("id") BigInteger flightNo) {
+		LOGGER.info("inside class!!! FlightController, method!!!: viewFlight ");
 		return flightService.viewFlight(flightNo);
 	}
 
@@ -54,6 +60,7 @@ public class FlightController {
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<Flight> modifyFlight(@RequestBody Flight flight) {
 		flightService.modifyFlight(flight);
+		LOGGER.info("inside class!!! FlightController, method!!!: modifyFlight ");
 		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
 	}
 
@@ -62,6 +69,7 @@ public class FlightController {
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String removeFlight(@PathVariable("id") BigInteger flightNo) {
 		flightService.removeFlight(flightNo);
+		LOGGER.info("inside class!!! FlightController, method!!!: removeFlight ");
 		return "The Deleted Flight is "+flightNo;
 	}
 }

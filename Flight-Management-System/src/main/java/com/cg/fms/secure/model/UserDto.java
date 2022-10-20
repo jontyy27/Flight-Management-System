@@ -2,13 +2,27 @@ package com.cg.fms.secure.model;
 
 import java.math.BigInteger;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class UserDto {
 	private String userType;
 	
+	  @NotEmpty(message="UserId is empty")
 	  private int userId;
+	  
+	  @NotEmpty(message="Please enter customer name")
 	  private String username;
+	  
+	  @NotEmpty(message="Please enter customer password")
 	  private String password;
+	  
+	  @NotEmpty(message="Please enter valid phonenumber")
+	  @Pattern(regexp="(^$|[0-9]{10})")
 	  private BigInteger userPhone;
+	  
+	  @Email @NotEmpty (message="Please enter valid email")
 	  private String email;
 	  private String role;
 	  
