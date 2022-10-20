@@ -25,29 +25,24 @@ public class ScheduleController {
 	@Autowired(required = true)
 	ScheduleService scheduleService;
 
-<<<<<<< HEAD
-=======
+
 	// View schedule by ID
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
+
 	@GetMapping("/viewSchedule/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public Schedule viewSchedule(@PathVariable("id") BigInteger scheduleId) {
 		return scheduleService.viewSchedule(scheduleId);
 	}
 
-<<<<<<< HEAD
-=======
 	// View all schedule
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
+
 	@GetMapping("/allSchedule")
 	public Iterable<Schedule> viewAllSchedule() {
 		return scheduleService.viewAllSchedule();
 	}
 
-<<<<<<< HEAD
-=======
+
 	// Add a schedule
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
 	@PostMapping("/addSchedule")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
@@ -55,10 +50,8 @@ public class ScheduleController {
 		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
 	}
 
-<<<<<<< HEAD
-=======
+
 	// Update schedule
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
 	@PutMapping("/updateSchedule")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<Schedule> modifySchedule(@RequestBody Schedule schedule) {
@@ -66,18 +59,12 @@ public class ScheduleController {
 		return new ResponseEntity<Schedule>(schedule, HttpStatus.OK);
 	}
 
-<<<<<<< HEAD
-=======
+
 	// Delete schedule by ID
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
 	@DeleteMapping("/deleteSchedule/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String removeSchedule(@PathVariable("id") BigInteger scheduleId) {
 		scheduleService.removeSchedule(scheduleId);
 		return "The " + scheduleId + " has been deleted";
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0

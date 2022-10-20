@@ -19,7 +19,6 @@ import com.cg.fms.dto.Booking;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.service.BookingService;
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 @RestController
 @RequestMapping("/booking")
@@ -28,11 +27,9 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	
-<<<<<<< HEAD
 
-=======
 	// Add Booking
->>>>>>> 818f7382584dfbe336da3d287b6b05cd080ce3d0
+
 	@PostMapping("/createBooking")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<Booking> addBooking(@RequestBody Booking newBooking) {

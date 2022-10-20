@@ -2,6 +2,7 @@ package com.cg.fms.dto;
 
 import java.math.BigInteger;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
+
 public class Passenger {
 	@Id
 	private BigInteger pnrNumber;
@@ -17,9 +19,12 @@ public class Passenger {
 	private BigInteger passengerUIN;
 	private Double luggage;
 	
-
-	public Passenger(BigInteger pnrNumber,String pasengerName,Integer passengerAge,BigInteger passengerUIN,
-			Double luggage) {
+public Passenger() {
+		super();
+	}
+@JsonCreator
+	public Passenger(@JsonProperty("pnrNumber")BigInteger pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
+			@JsonProperty("luggage")Double luggage) {
 		super();
 		this.pnrNumber = pnrNumber;
 		this.pasengerName = pasengerName;
