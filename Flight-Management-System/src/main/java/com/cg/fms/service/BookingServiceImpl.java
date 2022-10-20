@@ -11,8 +11,6 @@ import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.BookingDao;
 
-
-
 @Component
 public class BookingServiceImpl implements BookingService{
 	
@@ -85,6 +83,4 @@ public class BookingServiceImpl implements BookingService{
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
-
-
 }

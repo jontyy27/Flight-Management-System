@@ -25,6 +25,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	// Add user
 	@PostMapping("/createUser")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
 	public ResponseEntity<User> addUser(@RequestBody User newUser) {
@@ -33,11 +34,13 @@ public class UserController {
 		
 	}
 	
+	// Display all user
 	@GetMapping("/displayAllUser")
 	public Iterable<User> readAllUsers(){
 		return userService.displayAllUser();
 	}
 
+	// Update user
 	@PutMapping("/updateUser")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<User> modifyUser(@RequestBody User updatedUser) {
@@ -45,12 +48,14 @@ public class UserController {
 		return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
 	}
 	
+	// Search user by ID
 	@GetMapping("/searchUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<?> searchUserByID(@PathVariable("id") int userId){
 		return userService.viewUserById(userId);
 	}
 	
+	// Delete user by ID
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String deleteBookingByID(@PathVariable("id") int userId) {

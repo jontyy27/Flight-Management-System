@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserDao userDao;
 	
+	// adding a user
 	@Override
 	public User createUser(User newUser) {
 		Optional<User> findUserById = userDao.findById(newUser.getUserId());
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	// updating a user
 	@Override
 	public User updateUser(User updatedUser) {
 		Optional<User> findUserById = userDao.findById(updatedUser.getUserId());
@@ -49,6 +51,7 @@ public class UserServiceImpl implements UserService{
 			return updatedUser;
 	}
 
+	// deleting a user by id
 	@Override
 	public String deleteUser(int userId) {
 		Optional<User> findUserById = userDao.findById(userId);
@@ -60,11 +63,13 @@ public class UserServiceImpl implements UserService{
 			throw new RecordNotFoundException("User not found for the entered UserID");
 	}
 
+	// view all user
 	@Override
 	public Iterable<User> displayAllUser() {
 		return userDao.findAll();
 	}
 
+	// view user by id
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ResponseEntity<?> viewUserById(int userId) {
