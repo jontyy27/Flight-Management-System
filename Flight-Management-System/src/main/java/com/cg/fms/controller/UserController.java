@@ -59,8 +59,8 @@ public class UserController {
 	@DeleteMapping("/deleteUser/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
 	public String deleteBookingByID(@PathVariable("id") int userId) {
-		userService.deleteUser(userId);
-		return "The deleted user id is "+userId;
+		return userService.deleteUser(userId);
+		//return new ResponseEntity<User>(HttpStatus.OK);
 	}
 
 }

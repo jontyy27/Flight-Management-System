@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.cg.fms.secure.model.User;
 import com.cg.fms.exception.RecordAlreadyPresentException;
 import com.cg.fms.exception.RecordNotFoundException;
 import com.cg.fms.repository.UserDao;
+import com.cg.fms.secure.model.User;
 
 @Component
 @Service(value="userService")
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
 		
 		if(findUserById.isPresent()) {
 			userDao.deleteById(userId);
-			return "User Deleted!!";
+			return "User Deleted!";
 		} else
 			throw new RecordNotFoundException("User not found for the entered UserID");
 	}

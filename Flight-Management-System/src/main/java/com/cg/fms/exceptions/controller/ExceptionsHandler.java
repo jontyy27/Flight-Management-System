@@ -20,11 +20,12 @@ public class ExceptionsHandler {
 		return new ResponseEntity<APIError>(error, HttpStatus.NOT_FOUND);
 	}
 	
-	/*Record Not Found Exception Handler*/
+    /*Record Not Found Exception Handler*/
 	@ExceptionHandler(RecordNotFoundException.class)
 	public ResponseEntity<APIError> RecordNotFoundExceptionHandler(Exception e) {
+		System.out.println("Inside Exception handler");
 		APIError error= new APIError("Record not found in the database",404);
-	
+		
 		return new ResponseEntity<APIError>(error, HttpStatus.NOT_FOUND);
 	}
 	
