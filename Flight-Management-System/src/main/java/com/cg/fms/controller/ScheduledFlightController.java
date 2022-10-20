@@ -44,7 +44,9 @@ public class ScheduledFlightController {
 	
 	 // Controller for adding Scheduled Flights
 	 
-	//@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	/*
+	
 	@PostMapping("/addSF")
 	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight newscheduleFlight) {
 		scheduleFlightService.addScheduledFlight(newscheduleFlight);
@@ -52,14 +54,13 @@ public class ScheduledFlightController {
 	}
 	
 	
-	
-	
-	/*
-	public ResponseEntity<ScheduledFlight> addSF(@ModelAttribute ScheduledFlight scheduledFlight,
-			@RequestParam(name = "srcAirport", required=false) String source, @RequestParam(name = "dstnAirport", required=false) String destination,
-			@RequestParam(name = "deptDateTime", required=false) String departureTime, @RequestParam(name = "arrDateTime", required=false) String arrivalTime) {
+	*/
+	@PostMapping("/addSF")
+	public ResponseEntity<ScheduledFlight> addSF(@RequestBody ScheduledFlight scheduledFlight,
+			@RequestParam(name = "srcAirport") String source, @RequestParam(name = "dstnAirport") String destination,
+			@RequestParam(name = "deptDateTime") String departureTime, @RequestParam(name = "arrDateTime") String arrivalTime) {
 		System.out.println("Inside controller");
-		//Schedule schedule = ScheduleFlight.get;
+		Schedule schedule = new Schedule();
 		scheduledFlight.getSchedule().getDstnAirport();
 		System.out.println(scheduledFlight.getSchedule().getDstnAirport());
 		schedule.setScheduleId(scheduledFlight.getScheduleFlightId());
@@ -92,7 +93,7 @@ public class ScheduledFlightController {
 			return new ResponseEntity("Error adding Flight." + e, HttpStatus.BAD_REQUEST);
 		}
 	}
-*/
+
 	
 	 // Controller for modifying existing Scheduled Flights
 	 

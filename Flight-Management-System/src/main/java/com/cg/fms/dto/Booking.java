@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.cg.fms.secure.model.User;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 @Entity
 public class Booking {
@@ -26,6 +27,7 @@ public class Booking {
 	
 	@OneToOne(cascade = CascadeType.ALL, targetEntity = Passenger.class)
 	@JoinColumn(name = "List_Passengers")
+	
 	private List<Passenger> passenger;
 	
 	private double ticketCost;

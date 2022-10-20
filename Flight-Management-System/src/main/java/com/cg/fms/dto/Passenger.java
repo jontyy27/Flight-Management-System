@@ -5,6 +5,9 @@ import java.math.BigInteger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Passenger {
 	@Id
@@ -13,6 +16,17 @@ public class Passenger {
 	private Integer passengerAge;
 	private BigInteger passengerUIN;
 	private Double luggage;
+	
+
+	public Passenger(BigInteger pnrNumber,String pasengerName,Integer passengerAge,BigInteger passengerUIN,
+			Double luggage) {
+		super();
+		this.pnrNumber = pnrNumber;
+		this.pasengerName = pasengerName;
+		this.passengerAge = passengerAge;
+		this.passengerUIN = passengerUIN;
+		this.luggage = luggage;
+	}
 	public BigInteger getPnrNumber() {
 		return pnrNumber;
 	}
