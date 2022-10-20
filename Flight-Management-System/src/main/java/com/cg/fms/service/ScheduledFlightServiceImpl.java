@@ -75,31 +75,9 @@ public class ScheduledFlightServiceImpl implements ScheduledFlightService {
 			}catch(RecordNotFoundException e) {
 				return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 			}
-
-		
 		}
 			
-	/*
-	 // Service method to modify existing Scheduled flight in database
-	 
-	@Override
-	public ResponseEntity<?> modifySF(ScheduledFlight scheduleFlight) {
-		Optional<ScheduledFlight> findSFId = dao.findById(scheduleFlight.getScheduleFlightId());
-		try {
-			if(findSFById.isPresent()) {
-		
-		ScheduledFlight updateScheduleFlight = dao.findById(scheduleFlight.getScheduleFlightId()).get();
-		Schedule updateSchedule = scheduleDao.findById(scheduleFlight.getSchedule().getScheduleId()).get();
-		updateScheduleFlight.setAvailableSeats(scheduleFlight.getAvailableSeats());
-		updateSchedule.setSrcAirport(scheduleFlight.getSchedule().getSrcAirport());
-		updateSchedule.setDstnAirport(scheduleFlight.getSchedule().getDstnAirport());
-		updateSchedule.setArrDateTime(scheduleFlight.getSchedule().getArrDateTime());
-		updateSchedule.setDeptDateTime(scheduleFlight.getSchedule().getDeptDateTime());
-		dao.save(updateScheduleFlight);
-		return scheduleFlight;
-	}
-
-	*/
+	
 	 // Service method to remove existing Scheduled flight from database
 	 
 		@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -113,20 +91,13 @@ public class ScheduledFlightServiceImpl implements ScheduledFlightService {
 			if (!scheduleFlight.isPresent())
 				throw new RecordNotFoundException("Enter a valid Scheduled Flight Id");
 			else {
-				// try {
-				// cancelBookings(flightId);
-				// } catch (RecordNotFoundException e) {
-				// System.out.println("No Bookings Found");
-				// }
 				ScheduledFlight deleteId= scheduleFlight.get();
 				dao.deleteById(flightId);
 				return new ResponseEntity<ScheduledFlight>(deleteId, HttpStatus.OK);		
-
 			}
 			}catch(RecordNotFoundException e) {
 				return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 			}			
-
 		}
 	
 	 // Service method to view all Scheduled flights in database

@@ -31,11 +31,7 @@ public class Booking {
 	private LocalDate bookingDate;
 	
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Passenger.class)
-<<<<<<< HEAD
-	@JoinColumn(name = "List_Passengers")
-=======
 	@JoinColumn(name = "pnrNumber")
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
 	private List<Passenger> passenger;
 	private double ticketCost;
 	

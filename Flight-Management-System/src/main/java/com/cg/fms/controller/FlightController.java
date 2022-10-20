@@ -27,26 +27,19 @@ import com.cg.fms.service.FlightService;
 @RestController
 @RequestMapping("/flight")
 public class FlightController {
-<<<<<<< HEAD
-	
-=======
+
 	private static final Logger LOGGER=LoggerFactory.getLogger(FlightController.class);
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
+
 	@Autowired(required = true)
 	FlightService flightService;
 
 	// Add flight
 	@PostMapping("/addFlight")
 	@ExceptionHandler(RecordAlreadyPresentException.class)
-<<<<<<< HEAD
+
 	public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
-		return flightService.addFlight(flight);
-=======
-	public ResponseEntity<Flight> addFlight(@RequestBody Flight flight) {
-		flightService.addFlight(flight);
 		LOGGER.info("inside class!!! FlightController, method!!!: addFlight ");
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
+		return flightService.addFlight(flight);
 	}
 
 	// View all flight
@@ -59,40 +52,24 @@ public class FlightController {
 	// View flight by ID
 	@GetMapping("/viewFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-<<<<<<< HEAD
 	public ResponseEntity<?> viewFlight(@PathVariable("id") BigInteger flightNo) {
-=======
-	public Flight viewFlight(@PathVariable("id") BigInteger flightNo) {
 		LOGGER.info("inside class!!! FlightController, method!!!: viewFlight ");
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
 		return flightService.viewFlight(flightNo);
 	}
 
 	// Update flight
 	@PutMapping("/updateFlight")
 	@ExceptionHandler(RecordNotFoundException.class)
-<<<<<<< HEAD
 	public ResponseEntity<?> modifyFlight(@RequestBody Flight flight) {
-		return flightService.modifyFlight(flight);
-=======
-	public ResponseEntity<Flight> modifyFlight(@RequestBody Flight flight) {
-		flightService.modifyFlight(flight);
 		LOGGER.info("inside class!!! FlightController, method!!!: modifyFlight ");
-		return new ResponseEntity<Flight>(flight, HttpStatus.OK);
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
+		return flightService.modifyFlight(flight);
 	}
 
 	// Delete flight by ID
 	@DeleteMapping("/deleteFlight/{id}")
 	@ExceptionHandler(RecordNotFoundException.class)
-<<<<<<< HEAD
 	public ResponseEntity<?> removeFlight(@PathVariable("id") BigInteger flightNo) {
-		return flightService.removeFlight(flightNo);
-=======
-	public String removeFlight(@PathVariable("id") BigInteger flightNo) {
-		flightService.removeFlight(flightNo);
 		LOGGER.info("inside class!!! FlightController, method!!!: removeFlight ");
-		return "The Deleted Flight is "+flightNo;
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
+		return flightService.removeFlight(flightNo);
 	}
 }

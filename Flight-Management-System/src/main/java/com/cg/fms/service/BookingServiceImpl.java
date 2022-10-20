@@ -26,13 +26,12 @@ public class BookingServiceImpl implements BookingService{
 	public ResponseEntity<?> addBooking(Booking newBooking) {
 		Optional<Booking> findBookingById = bookingDao.findById(newBooking.getBookingId());
 		try {
-			if(!findBookingById.isPresent()) {
-				throw new RecordAlreadyPresentException("Booking with Booking ID: "+ newBooking.getBookingId() +" already exists!!");
-
-			} else {
+			if(findBookingById.isPresent()) {
 				bookingDao.save(newBooking);
 				return new ResponseEntity<Booking>(newBooking, HttpStatus.OK);
-			}
+			}else {
+				throw new RecordAlreadyPresentException("Booking with Booking ID: "+ newBooking.getBookingId() +" already exists!!");
+			} 
 		} catch(RecordAlreadyPresentException e) {
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
 		}

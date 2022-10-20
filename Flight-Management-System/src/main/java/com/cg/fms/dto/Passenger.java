@@ -19,10 +19,11 @@ public class Passenger {
 	private BigInteger passengerUIN;
 	private Double luggage;
 
+	public Passenger() {
+		super();
+	}
 	
-
-
-@JsonCreator
+    @JsonCreator
 	public Passenger(@JsonProperty("pnrNumber")int pnrNumber,@JsonProperty("pasengerName")String pasengerName,@JsonProperty("passengerAge")Integer passengerAge,@JsonProperty("passengerUIN")BigInteger passengerUIN,
 			@JsonProperty("luggage")Double luggage) {
 		super();
@@ -32,20 +33,8 @@ public class Passenger {
 		this.passengerUIN = passengerUIN;
 		this.luggage = luggage;
 	}
-<<<<<<< HEAD
+
 	public int getPnrNumber() {
-=======
-	
-	
-
-
-public Passenger() {
-	super();
-}
-	
-	
-	public BigInteger getPnrNumber() {
->>>>>>> 502f9732c65feab0ccc0a7be53773bb47c7a5a33
 		return pnrNumber;
 	}
 	public void setPnrNumber(int pnrNumber) {
@@ -75,6 +64,4 @@ public Passenger() {
 	public void setLuggage(Double luggage) {
 		this.luggage = luggage;
 	}
-	
-
 }

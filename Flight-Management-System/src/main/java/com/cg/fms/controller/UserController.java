@@ -33,8 +33,6 @@ public class UserController {
 	public ResponseEntity<?> addUser(@RequestBody User newUser) {
 		LOGGER.info("inside class!!! UserController, method!!!: addUser ");
 		return userService.createUser(newUser);
-	
-		
 	}
 	
 	// Display all user
@@ -50,8 +48,6 @@ public class UserController {
 	public ResponseEntity<?> modifyUser(@RequestBody User updatedUser) {
 		LOGGER.info("inside class!!! UserController, method!!!: modifyUser ");
 		return userService.updateUser(updatedUser);
-
-
 	}
 	
 	// Search user by ID
